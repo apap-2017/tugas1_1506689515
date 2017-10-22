@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Berhasil Menon-aktifkan Penduduk</title>
+        <div th:replace="fragments/fragment :: links"></div>
+    </head>
+    <body>
+    	<div th:replace="fragments/fragment :: navbar"></div>
+    	<div class="jumbotron">  		
+	                <h1>Sukses!</h1>
+	    </div>
+	    
+	    <div class="container">
+       		<h3 th:text="'Penduduk dengan NIK ' + ${nik} + ' Sudah Tidak Aktif' ">NIK Penduduk Tidak Aktif</h3>       		
+       		<h4> Redirecting . . . </h4>
+       		<script th:inline="javascript">
+       			$(document).ready(function () {
+       				var nik = [[${nik}]];
+       				setTimeout (
+       					function(){
+       						window.location.href="http://localhost:8080/penduduk?nik=" + nik;
+       						console.log(nik)
+       					}, 5000);
+       			});	
+       		</script>
+       	</div>
+    </body>
+</html>

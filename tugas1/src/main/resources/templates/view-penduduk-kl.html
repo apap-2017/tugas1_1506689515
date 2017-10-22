@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/fragment :: links"></div>
+		<script>
+					$(document).ready( function () {
+		    			$('#data').DataTable();
+					} );
+		</script>
+	</head>
+	
+	<body>
+		<div th:replace="fragments/fragment :: navbar"></div>
+		<div class="jumbotron">  		
+	           <h1>Lihat Data Penduduk</h1>
+	           <h2 th:text="'Di ' + ${nama_kt} + ', KECAMATAN ' + ${nama_kc} + ', KELURAHAN ' + ${nama_kl}">di Lokasi</h2>
+	    </div>
+	    
+	    
+	    <div class="container">
+            <div class="col-lg-4">
+                <h4>Penduduk Dengan Usia Termuda</h4>
+                <table class="table table-hover table-responsive">
+                    <thead>
+                    	<tr>
+							<th>No</th>
+							<th>NIK</th>
+							<th>Nama Lengkap</th>
+							<th>Tanggal Lahir</th>
+						</tr>
+                    </thead>
+                 
+                    <tbody>            
+	                    <tr th:each="muda,iterationStatus: ${termuda}">
+				    		<td th:text="${iterationStatus.count}">No</td>
+				   			<td th:text="${muda.nik}">NIK</td>
+				            <td th:text="${muda.nama}">Nama Lengkap</td>
+				            <td th:text="${muda.tanggal_lahir}">Tanggal Lahir</td>				         			
+				         </tr> 
+                    </tbody>
+                </table>
+            </div>
+            
+             <div class="col-lg-4">
+                <h4>Penduduk Dengan Usia Tertua</h4>
+                <table class="table table-hover table-responsive">
+                    <thead>
+                    	<tr>
+							<th>No</th>
+							<th>NIK</th>
+							<th>Nama Lengkap</th>
+							<th>Tanggal Lahir</th>
+						</tr>
+                    </thead>
+                 
+                    <tbody>            
+	                    <tr th:each="tua,iterationStatus: ${tertua}">
+				    		<td th:text="${iterationStatus.count}">No</td>
+				   			<td th:text="${tua.nik}">NIK</td>
+				            <td th:text="${tua.nama}">Nama Lengkap</td>
+				            <td th:text="${tua.tanggal_lahir}">Tanggal Lahir</td>				         			
+				         </tr> 
+                    </tbody>
+                </table>
+            </div>
+            
+	    </div>
+	    
+	    
+	    
+	  	<div class="container">
+			<table id="data" class="display">
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>NIK</th>
+						<th>Nama Lengkap</th>
+						<th>ID Keluarga</th>
+						<th>Jenis Kelamin</th>
+					</tr>
+				</thead>
+					
+				<tbody>
+			    	<tr th:each="penduduk,iterationStatus: ${list_penduduk}">
+			    		<td th:text="${iterationStatus.count}">No</td>
+			   			<td th:text="${penduduk.nik}">NIK</td>
+			            <td th:text="${penduduk.nama}">Nama Lengkap</td>
+			            <td th:text="${penduduk.id_keluarga}">ID Keluarga</td>				         			
+			           	<td th:text="${penduduk.getGender()}">Jenis Kelamin</td>				         			
+			         </tr> 
+				 </tbody>
+			</table>
+				
+			</div>
+			
+			
+			
+			
+		<div th:replace="fragments/fragment :: footer"></div>
+	</body>
+</html>

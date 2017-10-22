@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Berhasil Menambahkan Keluarga</title>
+        <div th:replace="fragments/fragment :: links"></div>
+    </head>
+    <body>
+    	<div th:replace="fragments/fragment :: navbar"></div>
+    	<div class="jumbotron">  		
+	    	<h1>Sukses!</h1>
+	    </div>
+	    
+	    <div class="container">
+       		<h3 th:text="'Keluarga dengan NKK ' + ${keluarga.getNomor_kk()} + ' Berhasil Ditambahkan' ">NKK Keluarga</h3>       		
+       	</div>
+    </body>
+</html>

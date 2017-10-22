@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<head>
+		<title>Cari Penduduk</title>
+		<div th:replace="fragments/fragment :: links"></div>
+	</head>
+	
+	<body>
+	
+		<div th:replace="fragments/fragment :: navbar"></div>
+		
+		<div class="jumbotron"> 
+			<h1>Lihat Data Penduduk</h1> 
+			 	
+	    	<div th:if="${ktIsFilled==true}">
+	    		<h2 th:text="${nama_kt}"> </h2>
+	    	</div>
+	    	<div th:if="${kcIsFilled==true}">
+	    		<h2 th:text="'KECAMATAN ' + ${nama_kc}"> </h2>
+	    	</div>
+	    </div>
+		
+		<div class="container-fluid text-center">    
+			<div class="row content">	
+		    	<div class="col-sm-8 text-left">
+					<form action="/penduduk/cari" method="get">
+							
+						<div th:if="${ktIsFilled==true}">
+					        <select class="form-control" name="kt" th:value="${kt}" readonly="true">
+		  						<option th:value="${kt}" th:text="${nama_kt}"></option>
+							</select>
+		       			</div>
+		       			<div th:unless="${ktIsFilled==true}">
+		       				<select class="form-control" name="kt" >
+		  						<option th:each="kota,iterationStatus: ${list_kt}" th:value="${kota.id}" th:text="${kota.nama_kota}"></option>
+							</select>        			
+						</div>
+		        		<div th:if="${kcIsFilled==true}">
+				        	<select class="form-control" name="kc" th:value="${kc}" readonly="true">
+		  						<option th:value="${kc}" th:text="${nama_kc}"></option>
+							</select>        			
+						</div>
+		        		<div th:unless="${kcIsFilled==true}">
+		        			<select class="form-control" name="kc">
+		  						<option th:each="kecamatan,iterationStatus: ${list_kc}" th:value="${kecamatan.id}" th:text="${kecamatan.nama_kecamatan}"></option>
+							</select>
+		        		</div>
+		        		
+		        		
+		        		<div th:if="${klIsFilled==true}">
+				            <select class="form-control" name="kl" th:value="${kl}" readonly="true">
+		  						<option th:value="${kl}" th:text="${nama_kl}"></option>
+							</select>
+		        		</div>
+		        		<div th:unless="${klIsFilled==true}">
+		        			<select class="form-control" name="kl">
+		  						<option th:each="kelurahan,iterationStatus: ${list_kl}" th:value="${kelurahan.id}" th:text="${kelurahan.nama_kelurahan}"></option>
+							</select>
+		        		</div>
+		    
+						<button class="btn btn-default" type="submit">Cari</button>
+					</form>
+				</div>
+		 	 </div>
+		</div>
+		
+		<div th:replace="fragments/fragment :: footer"></div>
+	</body>
+</html>
